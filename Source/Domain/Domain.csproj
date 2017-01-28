@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IChatRepository.cs" />
+    <Compile Include="Abstract\IProjectRepository.cs" />
+    <Compile Include="Abstract\IRepoRepository.cs" />
     <Compile Include="Core\BuscomContext.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\ChatRoom.cs" />
