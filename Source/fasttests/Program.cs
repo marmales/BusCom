@@ -14,8 +14,8 @@ namespace fasttests
         {
             using (var db = new BuscomContext())
             {
-                
 
+                
                 foreach (var item in db.Users)
                 {
                     Console.WriteLine(item.Password);

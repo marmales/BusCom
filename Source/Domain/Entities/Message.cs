@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Domain.Entities
 {
     public class Message
     {
+        [Key]
         public int MessageId { get; set; }
         public DateTime PostDate { get; set; }
 
@@ -18,7 +20,6 @@ namespace Domain.Entities
 
         public virtual User Sender { get; set; } 
 
-        public int AttachmentId { get; set; }
         public virtual Attachment Attachment { get; set; }
     }
 }
