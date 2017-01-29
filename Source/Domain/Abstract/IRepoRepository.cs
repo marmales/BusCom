@@ -8,6 +8,8 @@ namespace Domain.Abstract
 {
     public interface IRepoRepository
     {
-        IEnumerable<Commit> commits { get; set; }
+        IEnumerable<Commit> commits { get; }
+
+        bool AddCommit(Commit commit);
     }
 }

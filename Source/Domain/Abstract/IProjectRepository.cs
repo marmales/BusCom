@@ -9,6 +9,11 @@ namespace Domain.Abstract
 {
     public interface IProjectRepository
     {
-        IEnumerable<Project> projects { get; set; }
+        IEnumerable<Project> projects { get; }
+
+        bool AddProject(Project project);
+
+        IChatRepository getChannels(Project project);
+        IRepoRepository getCommits(Project project);
     }
 }

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Entities;
+
 namespace Domain.Abstract
 {
-    public interface IChatRepository
+    public interface IUserRepository
     {
-        IEnumerable<ChatRoom> channels { get; }
+        IEnumerable<User> users { get; }
     }
 }

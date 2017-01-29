@@ -52,7 +52,12 @@
     <Compile Include="Abstract\IChatRepository.cs" />
     <Compile Include="Abstract\IProjectRepository.cs" />
     <Compile Include="Abstract\IRepoRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Core\BuscomContext.cs" />
+    <Compile Include="Core\ChatRepository.cs" />
+    <Compile Include="Core\ProjectRepository.cs" />
+    <Compile Include="Core\RepoRepository.cs" />
+    <Compile Include="Core\UserRepository.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\ChatRoom.cs" />
     <Compile Include="Entities\Commit.cs" />
