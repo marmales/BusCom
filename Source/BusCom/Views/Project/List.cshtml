@@ -1,0 +1,17 @@
+﻿@using Domain.Entities
+@model IEnumerable<Project>
+
+
+
+@{
+    ViewBag.Title = "Projekty";
+}
+
+@foreach (var p in Model)
+{
+    <div>
+
+        @p.ProjectId @p.ProjectName
+    </div>
+}
+
