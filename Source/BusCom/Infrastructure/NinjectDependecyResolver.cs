@@ -1,4 +1,6 @@
-﻿using Domain.Abstract;
+﻿using BusCom.Infrastructure.Abstract;
+using BusCom.Infrastructure.Concrete;
+using Domain.Abstract;
 using Domain.Core;
 using Ninject;
 using System;
@@ -22,9 +24,8 @@ namespace BusCom.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IProjectRepository>().To<ProjectRepository>();
-            kernel.Bind<IChatRepository>().To<ChatRepository>();
-            kernel.Bind<IRepoRepository>().To<RepoRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
         public object GetService(Type serviceType)

@@ -15,16 +15,28 @@ namespace fasttests
             using (var db = new BuscomContext())
             {
 
-                ChatRoom asd = db.ChatRooms.First();
-
-                asd.Users.Add(db.Users.First(x => x.Nickname == "test1"));
-                
-                db.SaveChanges();
-                foreach (var item in db.Projects)
+                User u1 = new User()
                 {
-                    Console.WriteLine(item.ProjectName);
-                }
+                    FirstName = "ktos",
+                    LastName = "cos",
+                    Email = "qwerty",
+                    Login = "user2",
+                    Nickname = "test2",
+                    Password = "pass2"
+                };
+                User u2 = new User()
+                {
+                    FirstName = "ktos",
+                    LastName = "cos",
+                    Email = "qwerty",
+                    Login = "user3",
+                    Nickname = "test3",
+                    Password = "pass2"
+                };
 
+                db.Users.Add(u1);
+                db.Users.Add(u2);
+                db.SaveChanges();
                 Console.WriteLine("exit");
                 Console.ReadKey();
             }
