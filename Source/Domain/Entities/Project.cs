@@ -18,7 +18,7 @@ namespace Domain.Entities
         public string ProjectName { get; set; }
 
         
-        public int AdminId { get; set; }
+        public string AdminId { get; set; }
         [ForeignKey("AdminId")]
         public virtual User Admin { get; set; }
 

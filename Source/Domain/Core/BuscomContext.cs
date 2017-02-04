@@ -6,16 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Domain.Core
 {
-    public class BuscomContext : DbContext
+    public class BuscomContext : IdentityDbContext<User>
     {
-        public BuscomContext() :base("CommunicationAppDb")
+        public BuscomContext() :base("IdentityDb")
         {
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<BuscomContext, Migrations.Configuration>("BusComDb"));
         }
 
+        static BuscomContext()
+        {
+            Database.SetInitializer<BuscomContext>(new IdentityDbInit());
+        }
+        public static BuscomContext Create()
+        {
+            return new BuscomContext();
+        }
         public DbSet<Attachment> Attachments { get; set; }
         public DbSet<ChatRoom> ChatRooms { get; set; }
         public DbSet<Commit> Commits { get; set; }
@@ -23,11 +32,10 @@ namespace Domain.Core
         public DbSet<File> Files { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Project>()
                 .HasMany<User>(x => x.Users)
                 .WithMany(y => y.Projects)
@@ -61,10 +69,21 @@ namespace Domain.Core
                 .HasRequired<User>(x => x.Sender)
                 .WithMany(y => y.SendedMessages);
 
-            modelBuilder.Entity<User>()
-                .Property(User.HashedExpression);
 
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+        }
+
+        public class IdentityDbInit: DropCreateDatabaseIfModelChanges<BuscomContext>
+        {
+            protected override void Seed(BuscomContext context)
+            {
+                PerformInitialSetup(context);
+                base.Seed(context);
+            }
+            public void PerformInitialSetup(BuscomContext context)
+            {
+                //throw new NotImplementedException();
+            }
         }
     }
 }
