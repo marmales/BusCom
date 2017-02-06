@@ -105,6 +105,14 @@
     <Compile Include="Migrations\201702041615055_initial.Designer.cs">
       <DependentUpon>201702041615055_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702042101319_addFirstLastName.cs" />
+    <Compile Include="Migrations\201702042101319_addFirstLastName.Designer.cs">
+      <DependentUpon>201702042101319_addFirstLastName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702042316137_requiredfln.cs" />
+    <Compile Include="Migrations\201702042316137_requiredfln.Designer.cs">
+      <DependentUpon>201702042316137_requiredfln.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,6 +123,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702041615055_initial.resx">
       <DependentUpon>201702041615055_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702042101319_addFirstLastName.resx">
+      <DependentUpon>201702042101319_addFirstLastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702042316137_requiredfln.resx">
+      <DependentUpon>201702042316137_requiredfln.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

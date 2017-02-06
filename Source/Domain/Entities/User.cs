@@ -19,6 +19,10 @@ namespace Domain.Entities
             ChatRooms = new List<ChatRoom>();
             SendedMessages = new List<Message>();
         }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
 
         public virtual ICollection<Project> AdminProjects { get; set; }
         public virtual ICollection<Project> Projects { get; set; }

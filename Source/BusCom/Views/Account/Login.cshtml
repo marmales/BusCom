@@ -5,15 +5,16 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<div class="panel">
+<div class="panel col-lg-offset-1 col-lg-5">
     <div class="panel-heading">
         <h3> Zaloguj się</h3>
     </div>
     <div class="panel-body">
-        <p class="lead">Type username (user1) and password (pass1) to use web app:</p>
-        @using (Html.BeginForm())
+        <p class="lead">Type username (user1) and password (pass123) to use web app:</p>
+        @using (Html.BeginForm(new { returnUrl = ViewBag.returnUrl }))
         {
             @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
             <div class="form-group">
                 <label>Username:</label>
                 @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
@@ -22,6 +23,7 @@
                 <label>Password:</label>
                 @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
             </div>
+            @Html.ActionLink("Create New User", "Create", "Account", null, new { @class = "btn btn-default" })
             <input type="submit" value="Login" class="btn btn-primary" />
         }
     </div>

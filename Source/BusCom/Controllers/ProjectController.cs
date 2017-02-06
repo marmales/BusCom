@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 
 namespace BusCom.Controllers
 {
+    [Authorize]
     public class ProjectController : Controller
     {
         IProjectRepository repository;
@@ -17,6 +18,7 @@ namespace BusCom.Controllers
         }
         public ActionResult List()
         {
+            ViewBag.Type = HttpContext.User.Identity.GetUserId();
             return View(repository.projects);
         }
     }
