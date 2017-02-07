@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201702042316137_requiredfln.Designer.cs">
       <DependentUpon>201702042316137_requiredfln.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702062252473_connectChatRoomsWithProject.cs" />
+    <Compile Include="Migrations\201702062252473_connectChatRoomsWithProject.Designer.cs">
+      <DependentUpon>201702062252473_connectChatRoomsWithProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702042316137_requiredfln.resx">
       <DependentUpon>201702042316137_requiredfln.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702062252473_connectChatRoomsWithProject.resx">
+      <DependentUpon>201702062252473_connectChatRoomsWithProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

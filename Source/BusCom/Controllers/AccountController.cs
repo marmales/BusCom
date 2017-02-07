@@ -66,10 +66,10 @@ namespace BusCom.Controllers
 
         public ActionResult Create()
         {
-            return View(new CreateUserModel());
+            return View(new UserViewModel());
         }
         [HttpPost]
-        public async Task<ActionResult> Create(CreateUserModel newUser)
+        public async Task<ActionResult> Create(UserViewModel newUser)
         {
             if(ModelState.IsValid)
             {
@@ -98,11 +98,38 @@ namespace BusCom.Controllers
             }
         }
 
+
+        public async Task<ActionResult> ShowProfile()
+        {
+            User activeUser = UserManager.FindById(HttpContext.User.Identity.GetUserId());
+
+            UserViewModel userModel = new UserViewModel
+            {
+                ID = activeUser.Id,
+                FirstName = activeUser.FirstName,
+                LastName = activeUser.LastName,
+                Email = activeUser.Email,
+                Username = activeUser.UserName
+            };
+
+            return View(userModel);
+        }
         public async Task<ActionResult> Edit(string id)
         {
             User user = await UserManager.FindByIdAsync(id);
+
             if (user != null)
-                return View(user);
+            {
+                UserViewModel ViewUser = new UserViewModel
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    Username = user.UserName,
+                    ID = user.Id
+                };
+                return View(ViewUser);
+            }
             else
                 return RedirectToAction("Index");
         }
@@ -112,6 +139,8 @@ namespace BusCom.Controllers
             User user = await UserManager.FindByIdAsync(id);
             if (user != null)
             {
+                user.FirstName = firstname;
+                user.LastName = lastname;
                 user.Email = email;
                 IdentityResult validEmail
                 = await UserManager.UserValidator.ValidateAsync(user);
@@ -154,7 +183,17 @@ namespace BusCom.Controllers
             }
             return View(user);
         }
+        
+        public ActionResult NavBar()
+        {
+            string activeUserId = HttpContext.User.Identity.GetUserId();
+            User activeUser = UserManager.FindById(activeUserId);
 
+            ViewBag.FirstName = activeUser  .FirstName;
+            ViewBag.LastName = activeUser.LastName;
+
+            return View();
+        }
         private AppUserManager UserManager { get { return HttpContext.GetOwinContext().GetUserManager<AppUserManager>(); } }
     }
 }

@@ -13,6 +13,7 @@ namespace Domain.Entities
         {
             Users = new List<User>();
             Commits = new List<Commit>();
+            ChatRooms = new List<ChatRoom>();
         }
         public int ProjectId { get; set; }
         public string ProjectName { get; set; }
@@ -22,6 +23,7 @@ namespace Domain.Entities
         [ForeignKey("AdminId")]
         public virtual User Admin { get; set; }
 
+        public virtual ICollection<ChatRoom> ChatRooms { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Commit> Commits { get; set; }
     }

@@ -1,0 +1,13 @@
+﻿@model BusCom.Models.UserViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="col-lg-offset-4">
+    <ul class="list-group">
+        <li class="list-group-item-heading">@Model.FirstName @Model.LastName</li>
+        <li class="list-group-item">@Model.Email</li>
+    </ul>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID}, new { @class = "btn btn-primary"})
+</div>
+
