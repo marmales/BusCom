@@ -10,17 +10,27 @@ namespace Domain.Core
 {
     public class ProjectRepository : IProjectRepository
     {
-        private BuscomContext DBcontext = new BuscomContext();
+        private BuscomContext DBcontext;
 
         public IEnumerable<Project> projects { get { return DBcontext.Projects; }  }
-
-        public ProjectRepository()
+        public ProjectRepository(BuscomContext contextParam)
         {
+            DBcontext = contextParam;
         }
 
         public bool AddProject(Project project)
         {
-            throw new NotImplementedException();
+            project.ChatRooms.Add(new ChatRoom
+            {
+                ChatName = "general",
+                Description = "For general purpose",
+                Users = new List<User> { project.Admin }
+            });
+    
+            DBcontext.Projects.Add(project);
+            int rowAffected = DBcontext.SaveChanges();
+
+            return rowAffected > 0 ? true : false;
         }
 
         public IChatRepository getChannels(Project project)

@@ -22,6 +22,7 @@ namespace BusCom.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IProjectRepository>().To<ProjectRepository>();
+            kernel.Bind<IUsersRepository>().To<UsersRepository>();
         }
 
         public object GetService(Type serviceType)

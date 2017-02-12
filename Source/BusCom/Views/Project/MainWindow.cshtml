@@ -1,0 +1,12 @@
+﻿
+<div class="text-center">
+    <h1>Welcome in Web application Webcom</h1>
+    <h3>To continue choose Project or create one</h3>
+    <br />
+    <br />
+
+    @using (Html.BeginForm("CreateProject", "Project", FormMethod.Get))
+    {
+        <input type="submit" class="btn btn-primary" value="Create New Project" />
+    }
+</div>

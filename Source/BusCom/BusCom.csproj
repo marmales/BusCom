@@ -219,11 +219,14 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\CommitsController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependecyResolver.cs" />
+    <Compile Include="Models\UserProjects.cs" />
     <Compile Include="Models\UserModels\UserViewModel.cs" />
     <Compile Include="Models\UserModels\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -248,6 +251,12 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\ShowProfile.cshtml" />
     <Content Include="Views\Account\NavBar.cshtml" />
+    <Content Include="Views\Project\ProjectsNavigator.cshtml" />
+    <Content Include="Views\Project\MainWindow.cshtml" />
+    <Content Include="Views\Project\CreateProject.cshtml" />
+    <None Include="Views\Project\ProjectCreated.cshtml" />
+    <Content Include="Views\Shared\Success.cshtml" />
+    <Content Include="Views\Shared\Wrong.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -257,6 +266,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Chat\" />
+    <Folder Include="Views\Commits\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

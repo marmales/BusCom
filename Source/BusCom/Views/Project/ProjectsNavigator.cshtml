@@ -1,0 +1,36 @@
+﻿@using Domain.Entities
+@model BusCom.Models.UserProjects
+
+@{ 
+    Layout = null;
+}
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav side-nav">
+        <li>
+                
+                <a href="@Url.Action("CreateProject", "Project")"><span class="glyphicon glyphicon-plus "> Create Project</span></a>
+        </li>
+        <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                    Projects List
+                    <i class="fa fa-fw fa-caret-down"></i>
+                </a>
+            
+            <ul id="demo" class="collapse">
+                @foreach (Project item in Model.Projects)
+                {
+                    <li>
+                        <a href="@Url.Action("SelectProject", "Project", new { ProjectID = @item.ProjectId })">@item.ProjectName</a>
+                    </li>
+                }
+            </ul>
+        </li>
+        @foreach (User userItem in Model.ListUsers)
+        {
+            <li>
+                <a href="#">@userItem.FirstName @userItem.LastName</a>
+            </li>
+        }
+    </ul>
+
+</div>

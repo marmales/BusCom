@@ -7,6 +7,8 @@ using Moq;
 using Domain.Abstract;
 using System.Collections.Generic;
 using System.Linq;
+using BusCom.Models;
+
 namespace UnitTests
 {
     [TestClass]
@@ -17,15 +19,16 @@ namespace UnitTests
         {
             List<User> users = new List<User> { new User(), new User() };
             List<Project> projects = CreateProjects(users[0], users[1]);
-            Mock<IProjectRepository> mock = new Mock<IProjectRepository>();
+            Mock<IUsersRepository> mock = new Mock<IUsersRepository>();
 
             assignProjectsToUsers(projects, users);
-            mock.Setup(x => x.projects).Returns(projects);
+            mock.Setup(x => x.EveryUser).Returns(users);
 
             ProjectController controller = new ProjectController(mock.Object);
+            controller.Projects = new UserProjects(users[0]);
             controller.activeUser = users[0];
 
-            IEnumerable<Project> result = (IEnumerable<Project>)controller.ListUserProjects().Model;
+            IEnumerable<Project> result = ((UserProjects)controller.ProjectsNavigator().Model).Projects;
 
             Project[] projArray = result.ToArray();
             Assert.IsTrue(projArray.Count() == 4);
@@ -34,7 +37,7 @@ namespace UnitTests
             Assert.AreEqual(projArray[2].ProjectId, 3);
             Assert.AreEqual(projArray[3].ProjectId, 5);
 
-        }
+        }     
         private List<Project> CreateProjects(User user1, User user2)
         {
             return new List<Project>
@@ -56,6 +59,28 @@ namespace UnitTests
             users[0].Projects.Add(projects[2]);
             users[1].Projects.Add(projects[3]);
             users[0].AdminProjects.Add(projects[4]);
+        }
+        [TestMethod]
+        public void ListUsersForProject()
+        {
+            List<User> users = new List<User> { new User(), new User() };
+            List<Project> projects = new List<Project> { new Project() { ProjectId = 1, ProjectName = "Asd", Admin = users[0] } };
+            projects[0].Users.Add(users[1]);
+            users[0].AdminProjects.Add(projects[0]);
+            users[1].Projects.Add(projects[0]);
+
+            Mock<IUsersRepository> mock = new Mock<IUsersRepository>();
+            mock.Setup(x => x.EveryUser).Returns(users);
+
+            ProjectController controller = new ProjectController(mock.Object);
+            controller.Projects = new UserProjects(users[0]);
+            controller.activeUser = users[0];
+            controller.Projects.ActiveProject = projects[0];
+
+            IEnumerable<User> result = ((UserProjects)controller.ProjectsNavigator().Model).ListUsers;
+
+            int UsersCount = result.Count();
+            Assert.AreEqual(1, UsersCount);
         }
     }
 }

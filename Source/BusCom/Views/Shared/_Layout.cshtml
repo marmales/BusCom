@@ -41,35 +41,18 @@
             @Html.Action("NavBar", "Account")
 
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav">
-                        <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Projekty <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="#">Projekt 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Projekt 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a>Marcin Maleszewski</a></li>
-                        <li><a>Przemysław Konieczny</a></li>
-                        <li><a>Katarzyna Musioł</a></li>
-                    </ul>
+            @Html.Action("ProjectsNavigator", "Project")
 
-            </div>
             <!-- /.navbar-collapse -->
         </nav>
         <div id="page-wrapper" style="height: 924px;">
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div class="col-lg-9">
-                    <h1 class="page-header">
+                    @*<h1 class="page-header">
                         Nazwa kanału <small>Opis kanału</small>
                     </h1>
-                    <p> cos tam innego dodac fajny chat</p>
+                    <p> cos tam innego dodac fajny chat</p>*@
                     @RenderBody()
                 </div>
                 <div class="col-lg-3">

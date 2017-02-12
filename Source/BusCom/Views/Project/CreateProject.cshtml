@@ -1,0 +1,11 @@
+﻿@model Domain.Entities.Project
+<div>
+    @using (Html.BeginForm("CreateProject", "Project", FormMethod.Post))
+    {
+        <div class="form-group">
+            <label>Enter Project Name</label>
+            @Html.TextBoxFor(x => x.ProjectName)
+        </div>
+        <input type="submit" class="btn btn-default" value="Confirm" />
+    }
+</div>
